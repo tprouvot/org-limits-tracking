@@ -54,10 +54,9 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 
 		for (String key : limitsMap.keySet()) {
 			System.OrgLimit orgLimit = limitsMap.get(key);
-			Boolean hasAlert = alertsMap.containsKey(key);
 
 			// Save snapshots based on isPartial flag
-			setOrgSnapshotToSave(snapshots, hasAlert, orgLimit);
+			setOrgSnapshotToSave(snapshots, alertsMap.containsKey(key), orgLimit);
 
 			for (OrgSnapshotAlert__c alert : scope) {
 				if (alert.Limit__c == key) {

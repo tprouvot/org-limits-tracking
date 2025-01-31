@@ -4,7 +4,7 @@
     <description>Define the org limit key used for the Alert</description>
     <label>Limit</label>
     <required>true</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

@@ -4,7 +4,7 @@
     <defaultValue>false</defaultValue>
     <description>Send a custom notification to the defined user</description>
     <label>Send Custom Notification</label>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
