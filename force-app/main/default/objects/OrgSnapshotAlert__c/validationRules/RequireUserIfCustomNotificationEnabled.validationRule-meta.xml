@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RequireUserIfCustomNotificationEnabled</fullName>
+    <active>true</active>
+    <description>This VR ensure that a user has been defined if SendCustomNotification__c is true</description>
+    <errorConditionFormula>AND(SendCustomNotification__c,  ISBLANK( User__c ))</errorConditionFormula>
+    <errorDisplayField>User__c</errorDisplayField>
+    <errorMessage>A User must be defined to be able to send a custom notification.</errorMessage>
+</ValidationRule>

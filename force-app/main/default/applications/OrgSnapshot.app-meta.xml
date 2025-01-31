@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>OrgLimitMonitor</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Display info about org snapshot records, configuration and dashboards</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Org Snapshot</label>
+    <navType>Standard</navType>
+    <tabs>OrgSnapshot__c</tabs>
+    <tabs>OrgSnapshotAlert__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Org_Snapshot_UtilityBar</utilityBar>
+</CustomApplication>
