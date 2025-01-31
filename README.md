@@ -4,7 +4,8 @@ This framework allow users to schedule snapshots of org limits and configure ale
 
 ## Disclaimer
 
-Org Limit Tracking Framework is not an official Salesforce product, it has not been officially tested or documented by Salesforce.
+> [!IMPORTANT]
+> Org Limit Tracking Framework is not an official Salesforce product, it has not been officially tested or documented by Salesforce.
 
 ## How Do You Configure Org Limit Tracking ?
 
@@ -25,14 +26,16 @@ Two PermissionSet are defined for this framework:
 
 You can schedule OrgSnapshotBatchSchedulable class to execute periodically.
 
-:::warning
-For schedules that are less than 1h period, you will have to create different cron jobs
-:::
-ie
+> [!WARNING]
+> For schedules that are less than 1h period, you will have to create different cron jobs:
+
 
 `0 0 * * * ?`
+
 `0 15 * * * ?`
+
 `0 30 * * * ?`
+
 `0 45 * * * ?`
 
 Those schedules will count against the 100 scheduled Apex jobs, more details in the [documentation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_scheduler.htm#:~:text=Apex%20Scheduler%20Limits,equal%20to%20%E2%80%9CScheduled%20Apex%E2%80%9D.)
