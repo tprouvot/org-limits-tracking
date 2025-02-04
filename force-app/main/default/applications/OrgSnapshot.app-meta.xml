@@ -17,5 +17,4 @@
     <tabs>OrgSnapshot__c</tabs>
     <tabs>OrgSnapshotAlert__c</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Org_Snapshot_UtilityBar</utilityBar>
 </CustomApplication>
