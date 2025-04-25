@@ -74,6 +74,13 @@ You can schedule the `OrgSnapshotBatchSchedulable` class to execute periodically
 
 These schedules will count against the **100 scheduled Apex jobs limit**. More details in the [Salesforce documentation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_scheduler.htm#:~:text=Apex%20Scheduler%20Limits,equal%20to%20%E2%80%9CScheduled%20Apex%E2%80%9D.).
 
+### Example: Custom Notification & Email alert
+
+<img width="451" alt="Custom Notification" src="https://github.com/user-attachments/assets/c3059004-4ac4-478c-87da-c7f1dfaec2bd" />
+
+<img width="490" alt="Email alert" src="https://github.com/user-attachments/assets/db6a8fd8-6b87-44e9-abd9-6107935148ff" />
+
+
 ### Records Purge
 
 Based on the frequency of the schedule you define, the framework can create lots of records. You can manage `OrgSnapshot__c` purge with the framework [SObject Purge Framework](https://github.com/tprouvot/purge-sobject).
