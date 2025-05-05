@@ -3,7 +3,7 @@
     <fullName>RequireUserIfCustomNotificationEnabled</fullName>
     <active>true</active>
     <description>This VR ensure that a user has been defined if SendCustomNotification__c is true</description>
-    <errorConditionFormula>AND(SendCustomNotification__c,  ISBLANK( User__c ))</errorConditionFormula>
+    <errorConditionFormula>AND(SendCustomNotification__c,   AND(ISBLANK( User__c ),ISBLANK( Group__c )) )</errorConditionFormula>
     <errorDisplayField>User__c</errorDisplayField>
-    <errorMessage>A User must be defined to be able to send a custom notification.</errorMessage>
+    <errorMessage>A User or a Group must be defined to be able to send a custom notification.</errorMessage>
 </ValidationRule>
