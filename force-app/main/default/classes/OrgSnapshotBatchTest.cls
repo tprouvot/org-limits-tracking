@@ -45,4 +45,20 @@ private class OrgSnapshotBatchTest {
 		List<OrgSnapshot__c> snapshots = [SELECT Id FROM OrgSnapshot__c];
 		System.assert(snapshots.size() > 0, 'Expected OrgSnapshot__c records to be created for matching alerts.');
 	}
+
+	@isTest
+	static void orgSnapshotBatchScheduleTest(){
+		Datetime tomorrow = System.today().addDays(1);
+		String cron = '0 0 0 ' + tomorrow.day() + ' ' + tomorrow.month() + ' ?';
+		String jobId = System.schedule('TestSchedule', cron , new OrgSnapshotBatch());
+
+		// Get the information from the CronTrigger API object
+		CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE id = :jobId];
+
+		// Verify the expressions are the same
+		System.assertEquals(cron, ct.CronExpression, 'CronExpression should be equals');
+
+		// Verify the job has not run
+		System.assertEquals(0, ct.TimesTriggered, 'Job should not run');
+	}
 }

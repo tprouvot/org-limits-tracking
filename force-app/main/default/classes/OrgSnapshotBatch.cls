@@ -1,7 +1,7 @@
 /**
  * @description This batch fetches org limits and saves it in a custom object for tracking.
  */
-public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject> {
+public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject>, Schedulable {
 
 	private final static String TITLE = 'Org Limit Alert: Threshold Reached';
 	private final static String BODY = 'Alert! Your alert threshold is reached for the following limits:\n\n';
@@ -35,6 +35,14 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 			SELECT Limit__c, Threshold__c, LastAlertSentDate__c, Email__c, User__r.Email, SendCustomNotification__c
 			FROM OrgSnapshotAlert__c ORDER BY User__c ASC
 		]);
+	}
+
+	/**
+	 * @description Scheduled execution of OrgSnapshotBatch
+	 * @param sc    SchedulableContext
+	 */
+	public void execute(SchedulableContext sc) {
+		Database.executeBatch(new OrgSnapshotBatch());
 	}
 
 	/**
