@@ -73,7 +73,6 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 							String emailBody = BODY + buildAlertEmailBody(alert.Threshold__c, percent, orgLimit);
 							processNotificationRecipients(alert, emailBody, emailsToSend, userIdsToNotify, orgLimit.getName());
 
-							// Update LastAlertSentDate__c
 							alert.LastAlertSentDate__c = System.now();
 							alertsToUpdate.add(alert);
 						}
@@ -91,7 +90,6 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 		if (!userIdsToNotify.isEmpty()) {
 			notifyUsers(userIdsToNotify, limitsMap, alertsMap);
 		}
-
 		insert snapshots;
 
 		// Update LastAlertSentDate__c for alerts that were sent
@@ -144,7 +142,6 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 	}
 
 	private void notifyUsers(Set<String> userIdsToNotify, Map<String, System.OrgLimit> limitsMap, Map<String, OrgSnapshotAlert__c> alertsMap) {
-		CustomNotificationType notificationType = getNotificationType();
 
 		for (String userId : userIdsToNotify) {
 			for (String key : limitsMap.keySet()) {
@@ -159,7 +156,7 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 						Messaging.CustomNotification notification = new Messaging.CustomNotification();
 						notification.setTitle(TITLE);
 						notification.setBody(notificationBody);
-						notification.setNotificationTypeId(notificationType.Id);
+						notification.setNotificationTypeId(getNotificationType().Id);
 						notification.setTargetPageRef('{ type: "standard__app", attributes:{appTarget: "c__OrgSnapshot", attributes: {"objectApiName":"OrgSnapshot__c",actionName: "list"}}}');
 						notification.send(new Set<String>{userId});
 					}
@@ -182,8 +179,7 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 	 * @param emailsToSend List of emails to be sent
 	 * @param userIdsToNotify Set of user IDs to receive notifications
 	 */
-	private void processNotificationRecipients(
-		OrgSnapshotAlert__c alert,
+	private void processNotificationRecipients( OrgSnapshotAlert__c alert,
 		String emailBody,
 		List<Messaging.SingleEmailMessage> emailsToSend,
 		Set<String> userIdsToNotify,
@@ -201,7 +197,7 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 		// Process each recipient
 		Boolean isFirstRecipient = true;
 		for (String userId : recipientIds) {
-			// Add CC email only for the first recipient to avoid hitting email limits
+			// Add CC email only for the first recipient to avoid consuming email limits
 			String ccEmail = isFirstRecipient ? alert.Email__c : null;
 			emailsToSend.add(createEmail(userId, ccEmail, emailBody, limitName));
 			if (alert.SendCustomNotification__c) {
@@ -222,12 +218,7 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 			return userIds;
 		}
 
-		// Query for the group members
-		for (GroupMember member : [
-			SELECT UserOrGroupId
-			FROM GroupMember
-			WHERE Group.DeveloperName = :groupDevName
-		]) {
+		for (GroupMember member : [SELECT UserOrGroupId FROM GroupMember WHERE Group.DeveloperName = :groupDevName]) {
 			userIds.add(member.UserOrGroupId);
 		}
 		return userIds;
@@ -242,7 +233,6 @@ public with sharing class OrgSnapshotBatch implements Database.Batchable<SObject
 		if (alert.NotificationInterval__c == null || alert.LastAlertSentDate__c == null) {
 			return true;
 		}
-
 		Long millisecondsSinceLastAlert = System.now().getTime() - alert.LastAlertSentDate__c.getTime();
 		Integer minutesSinceLastAlert = Integer.valueOf(millisecondsSinceLastAlert / (1000 * 60));
 		return minutesSinceLastAlert >= alert.NotificationInterval__c;
