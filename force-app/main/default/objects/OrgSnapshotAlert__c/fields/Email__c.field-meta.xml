@@ -3,7 +3,8 @@
     <fullName>Email__c</fullName>
     <description>Email used to sent the alert</description>
     <externalId>false</externalId>
-    <inlineHelpText>Warning: setting an email will count against Single Email limit.</inlineHelpText>
+    <inlineHelpText>Only if different from user&apos;s email.
+Warning: setting an email will count against Single Email limit.</inlineHelpText>
     <label>Email</label>
     <required>false</required>
     <trackHistory>true</trackHistory>

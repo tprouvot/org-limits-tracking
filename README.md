@@ -14,7 +14,7 @@ The configuration is based on two objects:
 - **OrgSnapshot__c**: Stores the org limit snapshot defined by the frequency of the scheduled job.
 - **OrgSnapshotAlert__c**: Configures alerts for users when a particular threshold is reached.
 
-You can customize if the alert must be sent to a user by email and/or by custom notification.
+You can customize if the alert must be sent to a user or public group by email and/or by custom notification.
 
 ### Permission Sets
 
@@ -78,7 +78,17 @@ These schedules will count against the **100 scheduled Apex jobs limit**. More d
 
 <img width="451" alt="Custom Notification" src="https://github.com/user-attachments/assets/c3059004-4ac4-478c-87da-c7f1dfaec2bd" />
 
+
 <img width="490" alt="Email alert" src="https://github.com/user-attachments/assets/db6a8fd8-6b87-44e9-abd9-6107935148ff" />
+
+### Notification Interval
+
+To prevent alert spam, you can configure a notification interval for each alert. This setting determines the minimum time that must pass between consecutive alerts for the same limit.
+
+- **NotificationInterval__c**: Time in minutes between two notifications for the same limit
+- If not set (null), alerts will be sent every time the threshold is reached
+- If set, alerts will only be sent if enough time has passed since the last alert
+- The interval is checked for both email notifications and custom notifications
 
 
 ### Records Purge

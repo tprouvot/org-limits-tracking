@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventUserAndGroupDefined</fullName>
+    <active>true</active>
+    <description>Ensure that only one field among User__c and Group__c is filled in.</description>
+    <errorConditionFormula>AND( NOT(ISBLANK( User__c )) , NOT(ISBLANK( Group__c )) )</errorConditionFormula>
+    <errorMessage>You can only choose one User or one Group but not both</errorMessage>
+</ValidationRule>
