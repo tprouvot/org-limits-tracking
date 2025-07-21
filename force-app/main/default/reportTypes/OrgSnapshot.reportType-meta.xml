@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+	<baseObject>OrgSnapshot__c</baseObject>
+	<category>other</category>
+	<deployed>true</deployed>
+	<description>Report type for Org Snapshot tracking and analysis</description>
+	<label>Org Snapshots</label>
+	<sections>
+		<columns>
+			<checkedByDefault>false</checkedByDefault>
+			<field>Id</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>true</checkedByDefault>
+			<field>Name</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>true</checkedByDefault>
+			<field>CreatedDate</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>false</checkedByDefault>
+			<field>CreatedBy</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>false</checkedByDefault>
+			<field>LastModifiedDate</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>false</checkedByDefault>
+			<field>LastModifiedBy</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>true</checkedByDefault>
+			<field>Value__c</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>true</checkedByDefault>
+			<field>Limit__c</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<columns>
+			<checkedByDefault>true</checkedByDefault>
+			<field>Ratio__c</field>
+			<table>OrgSnapshot__c</table>
+		</columns>
+		<masterLabel>Org Snapshot Records</masterLabel>
+	</sections>
+</ReportType>

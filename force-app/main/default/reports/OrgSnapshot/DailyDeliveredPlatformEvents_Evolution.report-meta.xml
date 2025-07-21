@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+	<columns>
+		<field>OrgSnapshot__c$Name</field>
+	</columns>
+	<columns>
+		<field>OrgSnapshot__c$Value__c</field>
+	</columns>
+	<columns>
+		<field>OrgSnapshot__c$Limit__c</field>
+	</columns>
+	<columns>
+		<field>OrgSnapshot__c$Ratio__c</field>
+	</columns>
+	<description>Report showing the evolution of DailyDeliveredPlatformEvents value over time</description>
+	<filter>
+		<criteriaItems>
+			<column>OrgSnapshot__c$Name</column>
+			<columnToColumn>false</columnToColumn>
+			<isUnlocked>true</isUnlocked>
+			<operator>equals</operator>
+			<value>DailyDeliveredPlatformEvents</value>
+		</criteriaItems>
+	</filter>
+	<format>Summary</format>
+	<groupingsDown>
+		<dateGranularity>Day</dateGranularity>
+		<field>OrgSnapshot__c$CreatedDate</field>
+		<sortOrder>Desc</sortOrder>
+	</groupingsDown>
+	<name>Daily Delivered Platform Events</name>
+	<params>
+		<name>ro</name>
+		<value>1</value>
+	</params>
+	<reportType>OrgSnapshot__c</reportType>
+	<scope>organization</scope>
+	<showDetails>true</showDetails>
+	<showGrandTotal>true</showGrandTotal>
+	<showSubTotals>true</showSubTotals>
+	<timeFrameFilter>
+		<dateColumn>OrgSnapshot__c$CreatedDate</dateColumn>
+		<interval>INTERVAL_LAST30</interval>
+	</timeFrameFilter>
+</Report>
